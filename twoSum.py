@@ -18,6 +18,9 @@ Check the dict if the value at i exists. This means that there is a number in th
 the value at i
 Time complexity: O(n)
 
+# Solution 3
+Similar to solution two but eliminating the need for the two linear for loops
+
 """
 
 
@@ -44,3 +47,14 @@ class Solution:
         for i in range(n):
             if nums[i] in memo:
                 return [i, list(memo.keys())[list(memo.values()).index(nums[i])]]
+
+    def twoSum3(self, nums: list[int], target: int) -> list[int]:
+        n = len(nums)
+        memo = {}
+
+        for i in range(n):
+            val = target - nums[i]
+            if nums[i] in memo.keys():
+                return [nums.index(val), i]
+            else:
+                memo[val] = nums[i]
