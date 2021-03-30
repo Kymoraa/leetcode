@@ -17,3 +17,29 @@ class Solution:
         digits = int(''.join(digits))
         digits = digits + 1
         return [int(x) for x in str(digits)]
+
+
+"""
+The solution above is a bit crude...
+Converting inputs to different formats et al.
+Below is a better implementation using an iterative solution
+
+"""
+
+
+def plusOne(input_array):
+    carry = 1
+    n = len(input_array)
+    new_array = [0] * n
+
+    for i in range(n-1, -1, -1):
+        sum = input_array[i] + carry
+        if sum == 10:
+            carry = 1
+        else:
+            carry = 0
+            new_array[i] = sum % 10
+    if carry == 1:
+        new_array = [0] * (n+1)
+        new_array[0] = 1
+    return new_array
